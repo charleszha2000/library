@@ -10,6 +10,36 @@
             <button id = "create">+</button>
         </div>
         <div id = "main">
+            <div class = "popup" id = "popup">
+                <div id = "popup-header">
+                    <div>New Book:</div>
+                    <button id = "close-popup">&times;</button>
+                </div>
+                <div id = "popup-content">
+                    <label for = "title">Title: </label>
+                    <input id = "title" class = "book-input type-field">
+                    <label for = "author">Author: </label>
+                    <input id = "author" class = "book-input type-field">
+                    <label for = "pages">Pages: </label>
+                    <input id = "pages" class = "book-input type-field">
+                    <label for = "color">Color: </label>
+                    <select id = "color" class = "book-input">
+                        <option value = "maroon" selected>Red</option>
+                        <option value = "green">Green</option>
+                        <option value = "blue">Blue</option>
+                        <option value = "black">Black</option>
+                        <option value = "purple">Purple</option>
+                        <option value = "orange">Orange</option>
+                        <option value = "gray">Gray</option>
+                    </select>
+                    <div id = "read-div">
+                        <label for ="read">Read: </label>
+                        <input id = "read" type = "checkbox" class = "book-input">
+                    </div>
+                    <button id = "submit">Create</button>
+                </div>
+            </div>
+            <div id = "overlay"></div>
         </div>
     </body>
     <script src = "script.js"></script>

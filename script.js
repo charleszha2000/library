@@ -2,6 +2,31 @@ let library = [];
 
 const main = document.querySelector("#main");
 
+const popup = document.querySelector("#popup");
+const overlay = document.querySelector("#overlay");
+const newBookButton = document.querySelector("#create");
+
+newBookButton.addEventListener('click', () =>{
+    activatePopup();
+});
+
+const closePopupButton = document.querySelector("#close-popup");
+closePopupButton.addEventListener('click', () => {
+    closePopup();
+})
+
+const bookInputs = document.querySelectorAll(".book-input");
+const submitButton = document.querySelector("#submit");
+
+submitButton.addEventListener('click', () =>{
+    newBook = new Book("", "", 0, false, "");
+    bookInputs.forEach(input => newBook[input.id] = (input.id != "read") ? input.value : input.checked);
+    closePopup();
+    if(addBookToLibrary(newBook)) {
+        renderBook(newBook);
+    }
+});
+
 renderLibrary();
 
 
@@ -117,4 +142,14 @@ function renderLibrary(){
 
 function clear(){
     main.innerHTML = '';
+}
+
+function activatePopup(){
+    popup.classList.add("active");
+    overlay.classList.add("active");
+}
+
+function closePopup(){
+    popup.classList.remove("active");
+    overlay.classList.remove("active");
 }

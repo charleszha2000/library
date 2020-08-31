@@ -40,11 +40,15 @@ body{
 .author {
     text-align: center;
     margin-top: 5%;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .title {
     text-align:center;
     margin-top: 20%;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 .pages {
     text-align:center;
@@ -56,8 +60,8 @@ body{
     width: 100px;
     margin-top: 15%;
     margin-left: 50%;
-    transform: translate(-50%, 0%);
-
+    transform: translate(-50%, 0%) scale(1);
+    transition: 200ms ease-in-out;
 }
 
 button{
@@ -84,8 +88,9 @@ button:hover{
 }
 
 .hidden {
+    transition: 200ms ease-in-out;
     -webkit-user-select: none;
-    opacity: 0;
+    transform: scale(0);
 }
 
 #create{
@@ -109,4 +114,98 @@ button:hover{
 
 button:focus {
     outline:0;
+}
+
+.popup{
+    background-color: whitesmoke;
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    transform: scale(0);
+    transition: 200ms ease-in-out;
+    width: 400px;
+    height: 370px;
+    padding: 5px;
+    border-color: black;
+    border-width: 2px;
+    border-style:solid;
+    border-radius: 2%;
+    font-size: 20px;
+    color: black;
+    z-index: 10;
+}
+
+.popup.active{
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+#popup-header{
+    display: grid;
+    grid-template-columns: auto auto;
+    font-size: 36px;
+    border-style: solid;
+    border-color: gray;
+    border-width: 0px 0px 2px 0px;
+    padding-bottom: 2px;
+
+}
+#close-popup{
+    justify-self: right;
+    background-color: red;
+    color: black;
+    width: 40px;
+    height: 40px;
+    border-color:black;
+}
+.type-field{
+    width: 90%;
+    font-size: 16px;
+}
+label {
+    margin-top: 12px;
+}
+
+select{
+    width: 92.5%;
+    font-size: 16px;
+}
+
+
+#popup-content{
+    display: grid;
+    grid-template-columns: auto;
+}
+
+#read-div{
+    margin-top: 12px;
+}
+
+#read{
+    width: 20px;
+    height: 20px;
+    transform: translate(0%, 15%);
+}
+
+#submit{
+    margin-top: 10px;
+    color: black;
+    justify-self: end;
+    border-color: black;
+}
+
+#overlay{
+    position: fixed;
+    background-color:rgba(0,0,0,0.5);
+    top: 0;
+    right:0;
+    left:0;
+    bottom:0;
+    pointer-events: none;
+    opacity: 0;
+}
+
+#overlay.active{
+    pointer-events: all;
+    opacity: 1;
 }
