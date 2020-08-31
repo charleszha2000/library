@@ -1,5 +1,17 @@
 let library = [];
 
+
+if(!localStorage.getItem('lib')){
+    populateStorage();
+} else {
+    array = JSON.parse(localStorage.getItem('lib'));
+    array.forEach(book => {
+        const libBook = new Book(book.author, book.title, book.pages, book.read, book.color); 
+        library.push(libBook);
+    })
+}
+console.log(library);
+
 const main = document.querySelector("#main");
 
 const popup = document.querySelector("#popup");
@@ -73,6 +85,7 @@ function addBookToLibrary (book) {
         }
     }
     library.push(book);
+    populateStorage();
     return true;
 }
 
@@ -132,11 +145,14 @@ function renderBook(book) {
         } else {
             check.classList.remove("hidden");
         }
-        book.toggleRead();
+        librarybook = findBookInLibrary(book.author, book.title);
+        librarybook.read = !librarybook.read;
+        populateStorage();
     })
     deleteButton.addEventListener('click', () => {
         book.removeFromLibrary();
         main.removeChild(bookDiv);
+        populateStorage();
     })
 }
 
@@ -158,4 +174,8 @@ function activatePopup(){
 function closePopup(){
     popup.classList.remove("active");
     overlay.classList.remove("active");
+}
+
+function populateStorage(){
+    localStorage.setItem('lib', JSON.stringify(library));
 }
