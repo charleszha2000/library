@@ -20,11 +20,17 @@ const submitButton = document.querySelector("#submit");
 
 submitButton.addEventListener('click', () =>{
     newBook = new Book("", "", 0, false, "");
-    bookInputs.forEach(input => newBook[input.id] = (input.id != "read") ? input.value : input.checked);
-    closePopup();
+    bookInputs.forEach((input) =>{
+        newBook[input.id] = (input.id != "read") ? input.value : input.checked;
+        input.value = "";
+        input.checked = false;
+    } );
     if(addBookToLibrary(newBook)) {
         renderBook(newBook);
+    } else {
+        alert("That book already exists.");
     }
+    closePopup();
 });
 
 renderLibrary();
